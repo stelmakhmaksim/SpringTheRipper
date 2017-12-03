@@ -7,7 +7,7 @@ public class TerminatorQuoter implements Quoter {
     @InjectRandomInt(min = 2, max = 7)
     private int repeat;
     
-    private String message = "sadasdasd";
+    private String message;
 
     @PostConstruct
     public void init(){
@@ -19,12 +19,18 @@ public class TerminatorQuoter implements Quoter {
         System.out.println("Phase 1");
     }
 
+    public void setRepeat(int repeat) {
+        this.repeat = repeat;
+    }
+
     public void setMessage(String message) {
         this.message = message;
     }
 
     @Override
+    @PostProxy
     public void sayQuote() {
+        System.out.println("3 phase");
         for (int i = 0; i < repeat; i++) {
             System.out.println("message = " + message);
         }

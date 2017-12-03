@@ -3,12 +3,11 @@ package quoters;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.util.ReflectionUtils;
-import quoters.InjectRandomInt;
 
 import java.lang.reflect.Field;
 import java.util.Random;
 
-public class InjectRandomAnnotationBeanPostProcessor implements BeanPostProcessor {
+public class InjectRandomIntAnnotationBeanPostProcessor implements BeanPostProcessor {
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws
             BeansException {
@@ -23,7 +22,6 @@ public class InjectRandomAnnotationBeanPostProcessor implements BeanPostProcesso
                 field.setAccessible(true);
                 ReflectionUtils.setField(field, bean, i);
             }
-
         }
         return bean;
     }
